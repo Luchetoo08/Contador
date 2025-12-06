@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Personalizado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Outfit:wght@300;400;600;800&family=Patrick+Hand&family=Courier+Prime&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background removed for cleaner digital look -->
+
+    <div class="container">
+        <!-- Input Section -->
+        <div id="input-section" class="card">
+            <h1>Crear Nuevo Contador</h1>
+
+            <div class="input-group">
+                <label for="event-name">Nombre del Evento</label>
+                <input type="text" id="event-name" placeholder="Ej: Stream, Año Nuevo...">
+            </div>
+
+            <!-- Custom Color Picker -->
+            <div class="input-group">
+                <label for="accent-color">Color del Tema</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="color" id="accent-color" value="#FF8C00"
+                        style="height: 40px; padding: 0; width: 60px; cursor: pointer;">
+                    <span style="font-size: 0.9rem; color: var(--text-secondary);">Selecciona el color principal</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="font-style">Estilo de Fuente</label>
+                <select id="font-style">
+                    <option value="'Orbitron', sans-serif">Digital (Default)</option>
+                    <option value="'Outfit', sans-serif">Moderno</option>
+                    <option value="'Patrick Hand', cursive">Manuscrito</option>
+                    <option value="'Courier Prime', monospace">Máquina de Escribir</option>
+                </select>
+            </div>
+
+            <!-- Mode Selection -->
+            <div class="input-group tabs">
+                <label style="margin-bottom: 10px;">Tipo de Contador</label>
+                <div class="tab-buttons">
+                    <button id="mode-date" class="tab-btn active">Fecha Específica</button>
+                    <button id="mode-duration" class="tab-btn">Duración / Temporizador</button>
+                </div>
+            </div>
+
+            <!-- Date Input Mode -->
+            <div id="date-input-container" class="input-group mode-content">
+                <label for="event-date">Fecha y Hora Objetivo</label>
+                <input type="datetime-local" id="event-date">
+            </div>
+
+            <!-- Duration Input Mode -->
+            <div id="duration-input-container" class="input-group mode-content" style="display: none;">
+                <label>Duración</label>
+                <div class="duration-inputs">
+                    <div class="duration-field">
+                        <input type="number" id="dur-days" min="0" placeholder="0">
+                        <span>Días</span>
+                    </div>
+                    <div class="duration-field">
+                        <input type="number" id="dur-hours" min="0" max="23" placeholder="0">
+                        <span>Hs</span>
+                    </div>
+                    <div class="duration-field">
+                        <input type="number" id="dur-minutes" min="0" max="59" placeholder="10">
+                        <span>Min</span>
+                    </div>
+                    <div class="duration-field">
+                        <input type="number" id="dur-seconds" min="0" max="59" placeholder="0">
+                        <span>Seg</span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="start-btn" class="btn-primary">Iniciar Cuenta Regresiva</button>
+        </div>
+
+        <!-- Countdown Section -->
+        <div id="countdown-section" class="card" style="display: none;">
+            <h1 id="display-event-name">Evento</h1>
+            <p id="display-message" class="subtitle">Tiempo restante</p>
+
+            <div class="countdown-grid">
+                <div class="time-unit">
+                    <span id="days" class="number">00</span>
+                    <span class="label">Días</span>
+                </div>
+                <div class="time-unit">
+                    <span id="hours" class="number">00</span>
+                    <span class="label">Horas</span>
+                </div>
+                <div class="time-unit">
+                    <span id="minutes" class="number">00</span>
+                    <span class="label">Minutos</span>
+                </div>
+                <div class="time-unit">
+                    <span id="seconds" class="number">00</span>
+                    <span class="label">Segundos</span>
+                </div>
+            </div>
+
+            <div class="controls-container">
+                <button id="reset-btn" class="btn-secondary">Editar / Nuevo</button>
+                <button id="obs-btn" class="btn-obs" title="Generar link para OBS">🔗 Link OBS</button>
+            </div>
+
+            <!-- OBS Modal / Info -->
+            <div id="obs-info"
+                style="display: none; margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 4px;">
+                <p style="font-size: 0.9rem; margin-bottom: 5px;">Copia este URL en tu navegador de OBS:</p>
+                <input type="text" id="obs-url-input" readonly style="font-size: 0.8rem; padding: 5px;">
+                <button id="copy-obs-btn" style="margin-top: 5px; padding: 5px; font-size: 0.8rem;">Copiar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
